@@ -1,0 +1,59 @@
+{
+    "nav": {
+        "home": "Home",
+        "about": "About Us",
+        "submissions": "Submissions",
+        "manuscriptGuidelines": "Manuscript Guidelines",
+        "policies": "Policies",
+        "books": "Books",
+        "english": "English",
+        "tamil": "Tamil",
+        "journals": "Journals",
+        "authors": "Authors",
+        "contact": "Contact Us"
+    },
+    "home": {
+        "greetings": "Welcome to Venbaah Publications",
+        "greetingText": "Tamil is a classical language. The origin of Tamil language is natural. Its immense influence is seen in various languages of the world. The world's first grammar book \"Tholkappiyam\" was written in Tamil. The speciality and usage of the language are explained in that book. In Tamil literature, Sangam literature reflects the ancient tradition of the Tamil people. \"Venbaah Literary Journal\" has been created to make everyone aware of the speciality of Tamil language, its current status and revival nature. It is the duty of professors, researchers, activists, creators and patrons to further enhance the speciality of Tamil language and literature",
+        "objectives": "Our Mission",
+        "objectiveText": "The Venbaah Literary International Journal, published in Tamil and English, aims to help everyone evaluate and understand the modern developments in Tamil development. This journal is designed to cover Tamil language and literary culture, folklore, temple art, Siddha medicine, linguistics, criticism, Tamil literary works, psychology, feminism, comparative perspective, global translation literature and other Tamil-related fields.",
+        "invitation": "Invitation",
+        "invitationText": "Elegant research articles from scholars, researchers, writers and Tamil enthusiasts are welcome. All research articles will be reviewed and published on the website",
+        "copyright": "Copyright",
+        "copyrightText": "The journal will obtain the copyright upon obtaining a license transfer form from the author. The research ideas belong to the creators. The editor will not be responsible."
+    },
+    "submissions": {
+        "manuscriptGuidelines": {
+            "title": "Venbaa Tamil Research Forum",
+            "sub-title":"Research Article Formats",
+            "language":"Language",
+            "tamilOrEnglish":"Tamil or English",
+            "articleSize":"Research Article Size",
+            "articleSizeDesc":"The research article should be typed in Latha (Tamil), Times New Roman (English) font on A4 paper, size 12; not exceeding 8-15 pages with 1.5 spacing. Footnotes, song number, page number and bibliography should be included.",
+            "arcticleTitle":"Title Page",
+            "articleDesc":"The title page should contain the name, short title, address, and email address. Research Abstract: An English abstract of 150 - 200 words should be provided. Avoid unnecessary abbreviations and footnotes. Index words: 4 - 6 pure index words in Tamil should be used for indexing.",
+            "structure":"Structure of Articles",
+            "structureDesc":"Research articles should be of high quality.",
+            "submissionMethod":"Submission Method",
+            "submissionMethodDesc":"Research articles should be sent to the email address venbaah@gmail.com.",
+            "subscription":"Subscription",
+            "subscriptionDesc":"Research articles will be published online on a specific day in the interest of green environment. Subscription status: No subscription. Published twice a year and free of charge via the website, including special issues.",
+            "author":"Author's responsibility",
+            "authorDesc":"The full reference list should be in Tamil and English. Citations should be in accordance with research ethics and MLA eighth edition style for literature, APA style for science-related articles and Chicago style for history-related articles. Information on approval, disagreements and financial support should be on the last page of the article. News regarding deletion of articles and making corrections will be communicated to the authors. They should accept it when necessary."
+        },
+        "policies": {
+            "title": "Venbaa Tamil Research Forum",
+            "sub-title":"Action Plan",
+            "publication":"Publication/Evaluation Policy",
+            "publicationDesc":"Research articles will be published online only. Research articles are subject to a two-step internal evaluation process. The reviewed articles will be published online as PDF documents only after revisions are made as per the advice of the evaluated professors and quality assurance is confirmed again. Reviewers should provide quality reviews to the articles. After reviewing the articles in a proper manner, they should clearly state that there is no conflict of opinion. Reviewers should clearly indicate if citations are not clearly mentioned in the articles. The evaluation process should be done in a confidential and trustworthy manner.",
+            "plagiarism":"Plagiarism Removal",
+            "plagiarismDesc":"This type of plagiarism is considered an injustice to the opinion of a scholar. The editorial board aims to ensure that authors achieve their due value. If plagiarism is found in the work of researchers, the editorial board will reject the article.",
+            "ethics":"Editorial Ethics & Misconduct Report",
+            "ethicsDesc":"The publisher will take action if the articles do not follow the research ethics. Appropriate decisions will be made to ensure quality research and publishing practices. If any violation of research methods is committed, the article will be removed from the edition. If any corrections are required in the articles, an application should be made to the editor. Article deletions, corrections, explanations and apologies will be accepted and announced. The full file of the journal will be preserved in the Internet Archive."    
+        }
+    },
+    "footer": {
+        "copyright": "Copyright",
+        "copyrighted": "Copyright © 2025 Venbaah Publications. All rights reserved."
+    }
+}
