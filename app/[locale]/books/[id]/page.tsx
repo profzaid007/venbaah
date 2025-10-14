@@ -166,7 +166,13 @@ export default async function BookPage({ params }: PageProps) {
                                     <div className="mt-4">
                                         <h4 className="text-lg font-semibold mb-2">Sample Preview</h4>
 
-                                        
+                                        {/*
+            Using Google Docs Viewer for reliability, or a direct iframe 
+            with a modified URL for controls (best effort).
+            
+            1. Direct PDF URL with controls=0 (Browser-dependent)
+            2. Google Docs Viewer (More reliable for embedding, but relies on Google)
+        */}
 
                                         {/* OPTION 1: Direct iFrame (Recommended for modern browsers) */}
                                         <iframe
@@ -179,27 +185,11 @@ export default async function BookPage({ params }: PageProps) {
                                             title={`Sample PDF for ${book.title}`}
                                             style={{ border: 'none' }} // Remove standard iframe border
                                         >
-                                            <p>Your browser does not support PDF embedding. <a href={urlFor(book.sample_pdf).url()} target="_blank" rel="noopener noreferrer">View PDF</a></p>
-                                        </iframe>
-
-                                        {/* OPTIONAL: If the direct iframe doesn't work well, you can use Google Viewer:
-            <iframe
-                src={`https://docs.google.com/gview?url=${encodeURIComponent(book.sample_pdf)}&embedded=true`}
-                width="100%"
-                height="500px"
-                className="border rounded-lg shadow-inner"
-                title={`Sample PDF for ${book.title}`}
-            >
-            </iframe>
-        */}
-
-                                        {/* You may still want to offer a link in case the iframe fails */}
-                                        <p className="text-sm text-gray-500 mt-2">
-                                            *PDF is displayed in a viewer. If not visible, please try viewing it directly:
-                                            <a href={urlFor(book.sample_pdf).url()} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline ml-1">View PDF</a>
-                                        </p>
+                                            
+                                        </iframe> 
                                     </div>
                                 )}
+
                             </div>
                         </div>
                     </div>
@@ -224,52 +214,7 @@ export default async function BookPage({ params }: PageProps) {
                 )}
             </div>
 
-            {/* Related Books by Same Author
-            {book.author?.books && book.author.books.length > 0 && (
-                <div className="mt-12">
-                    <h2 className="text-2xl font-bold mb-6">More by {book.author.name}</h2>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {book.author.books
-                            .filter(b => b._id !== book._id) // Exclude current book
-                            .slice(0, 3) // Show max 3 books
-                            .map(relatedBook => (
-                                <Link
-                                    key={relatedBook._id}
-                                    href={`/books/${relatedBook._id}`}
-                                    className="group block overflow-hidden rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
-                                >
-                                    <div className="relative aspect-[2/3] bg-gray-100">
-                                        {relatedBook.cover_front ? (
-                                            <Image
-                                                src={relatedBook.cover_front}
-                                                alt={relatedBook.title}
-                                                fill
-                                                className="object-cover"
-                                                sizes="(max-width: 768px) 50vw, 33vw"
-                                            />
-                                        ) : (
-                                            <div className="w-full h-full flex items-center justify-center bg-gray-200">
-                                                <span className="text-gray-400">No cover</span>
-                                            </div>
-                                        )}
-                                    </div>
-                                    <div className="p-4">
-                                        <h3 className="font-semibold text-lg mb-1 group-hover:text-blue-600 line-clamp-2">
-                                            {relatedBook.title}
-                                        </h3>
-                                        <div className="flex justify-between items-center mt-2">
-                                            {relatedBook.offer_price ? (
-                                                <span className="font-bold">{formatPrice(relatedBook.offer_price)}</span>
-                                            ) : relatedBook.mrp_price ? (
-                                                <span className="font-bold">{formatPrice(relatedBook.mrp_price)}</span>
-                                            ) : null}
-                                        </div>
-                                    </div>
-                                </Link>
-                            ))}
-                    </div>
-                </div>
-            )} */}
+
         </div>
     );
 }
