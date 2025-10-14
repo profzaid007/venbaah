@@ -1,15 +1,14 @@
 "use client";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { useState } from "react";
 import LocaleSwitcher from "@/components/LocaleSwitcher";
 import Image from "next/image";
 import { useTranslations } from 'next-intl';
 export default function Navbar() {
     const t = useTranslations('nav');
     const { locale } = (useParams() as { locale?: string }) || {};
-    const prefix = locale ? `/${locale}` : "";
-    const [open, setOpen] = useState(false);
+    
+    
 
     // const navItems = [
     //     { label: "Home", href: "/" },
@@ -41,11 +40,11 @@ export default function Navbar() {
                             </ul>
                         </li>
                         <li>
-                            <>{t('books')}</>
-                            <ul className="p-2">
+                            <Link href={`/${locale}/books`}>{t('books')}</Link>
+                            {/* <ul className="p-2">
                                 <li><Link href={`/${locale}/books/english`}>{t('english')}</Link></li>
                                 <li><Link href={`/${locale}/books/tamil`}>{t('tamil')}</Link></li>
-                            </ul>
+                            </ul> */}
                         </li>
                         <li>
                             <>{t('journals')}</>
@@ -74,13 +73,13 @@ export default function Navbar() {
                         </details>
                     </li>
                     <li>
-                        <details>
-                            <summary>{t('books')}</summary>
-                            <ul className="p-2">
+                        {/* <details> */}
+                            <Link href={`/${locale}/books`}>{t('books')}</Link>
+                            {/* <ul className="p-2">
                                 <li><Link href={`/${locale}/books/english`}>{t('english')}</Link></li>
                                 <li><Link href={`/${locale}/books/tamil`}>{t('tamil')}</Link></li>
-                            </ul>
-                        </details>
+                            </ul> */}
+                        {/* </details> */}
                     </li>
                     <li>
                         <details>
