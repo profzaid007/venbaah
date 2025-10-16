@@ -59,6 +59,13 @@ export interface Journal {
   lang: Language;
   month?: string;
   year?: number;
+  cover_front?: {
+    _type: 'image';
+    asset: {
+      _ref: string;
+      _type: 'reference';
+    };
+  };
   pdf?: File;
   publish_status: PublishStatus;
 }
@@ -131,6 +138,8 @@ export async function getBookById(id: string): Promise<Book> {
   return book;
 }
 
+
+
 // ------------------ AUTHORS ------------------
 
 export async function getAuthors(options: QueryOptions = {}): Promise<Author[]> {
@@ -186,8 +195,11 @@ export async function getAuthorById(id: string): Promise<Author & { books: Book[
   return { ...author, books };
 }
 
-// ------------------ JOURNALS ------------------
+/// In lib/actions.ts
+// (Add these functions to the JOURNALS section)
 
+// In lib/actions.ts
+// In lib/actions.ts
 export async function getJournals(options: QueryOptions = {}): Promise<Journal[]> {
   const { search = '', page = 1, limit = 10, lang } = options;
   const start = (page - 1) * limit;
@@ -196,7 +208,7 @@ export async function getJournals(options: QueryOptions = {}): Promise<Journal[]
     *[_type == "journal" 
       ${search ? '&& title match $search' : ''}
       ${lang ? '&& lang == $lang' : ''}
-      && publish_status == "published"
+      && (!defined(publish_status) || publish_status == "published")
     ] | order(year desc, month desc) [${start}...${start + limit}] {
       _id,
       _type,
@@ -205,18 +217,18 @@ export async function getJournals(options: QueryOptions = {}): Promise<Journal[]
       lang,
       month,
       year,
+      "cover_front": cover_front.asset->url,
       "pdf": pdf.asset->url,
       publish_status
     }
   `;
   
-  const params: { search?: string; lang?: Language } = {};
+  const params: { search?: string; lang?: string } = {};
   if (search) params.search = `*${search}*`;
   if (lang) params.lang = lang;
   
-  return sanity.fetch(query, params);
+  return sanity.fetch(query, params) || [];
 }
-
 export async function getJournalById(id: string): Promise<Journal> {
   return sanity.fetch(
     `*[_type == "journal" && _id == $id][0] {
@@ -227,6 +239,7 @@ export async function getJournalById(id: string): Promise<Journal> {
       lang,
       month,
       year,
+      "cover_front": cover_front.asset->url,
       "pdf": pdf.asset->url,
       publish_status
     }`,

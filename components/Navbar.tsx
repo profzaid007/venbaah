@@ -7,18 +7,6 @@ import { useTranslations } from 'next-intl';
 export default function Navbar() {
     const t = useTranslations('nav');
     const { locale } = (useParams() as { locale?: string }) || {};
-    
-    
-
-    // const navItems = [
-    //     { label: "Home", href: "/" },
-    //     { label: "About Us", href: "/about" },
-    //     { label: "Submissions", href: "/submissions" },
-    //     { label: "Books", href: "/books" },
-    //     { label: "Journals", href: "/journals" },
-    //     { label: "Authors", href: "/authors" },
-    //     { label: "Contact Us", href: "/contact" }
-    // ];
 
     return (
         <div className="navbar bg-base-100 shadow-sm sticky top-0 z-50 w-full">
@@ -40,11 +28,11 @@ export default function Navbar() {
                             </ul>
                         </li>
                         <li>
-                            <Link href={`/${locale}/books`}>{t('books')}</Link>
-                            {/* <ul className="p-2">
-                                <li><Link href={`/${locale}/books/english`}>{t('english')}</Link></li>
-                                <li><Link href={`/${locale}/books/tamil`}>{t('tamil')}</Link></li>
-                            </ul> */}
+                                {t('books')}
+                                <ul className="p-2">
+                                    <li><Link href={`/${locale}/books/english`}>{t('english')}</Link></li>
+                                    <li><Link href={`/${locale}/books/tamil`}>{t('tamil')}</Link></li>
+                                </ul>
                         </li>
                         <li>
                             <>{t('journals')}</>
@@ -73,13 +61,13 @@ export default function Navbar() {
                         </details>
                     </li>
                     <li>
-                        {/* <details> */}
-                            <Link href={`/${locale}/books`}>{t('books')}</Link>
-                            {/* <ul className="p-2">
+                        <details>
+                            <summary>{t('books')}</summary>
+                            <ul className="p-2">
                                 <li><Link href={`/${locale}/books/english`}>{t('english')}</Link></li>
                                 <li><Link href={`/${locale}/books/tamil`}>{t('tamil')}</Link></li>
-                            </ul> */}
-                        {/* </details> */}
+                            </ul>
+                        </details>
                     </li>
                     <li>
                         <details>

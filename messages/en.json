@@ -22,18 +22,20 @@
         "copyright": "Copyright",
         "copyrightText": "The journal will obtain the copyright upon obtaining a license transfer form from the author. The research ideas belong to the creators. The editor will not be responsible."
     },
-   "dashboard": {
-        "welcome": "Welcome back, {name}",
-        "manageData": "Manage Your Data",
-        "subtitle": "Here's what's happening with your store today.",
-        "yourItems": "Your Items",
-        "newItemPlaceholder": "Add a new item...",
-        "addButton": "Add",
-        "noItems": "No items found. Add one to get started!",
-        "dashboard": "Dashboard",
-        "books": "Books",
-        "journals": "Journals",
-        "authors": "Authors"
+    "books": {
+        "english": "English",
+        "tamil": "Tamil",
+        "englishBooks": "English Books",
+        "tamilBooks": "Tamil Books",
+        "search": "Search",
+        "searchBooks":"Search books...",
+        "searching": "Searching...",
+        "noBooksFound": "No books found. Try a different search term",
+        "noCover": "No cover",
+        "discount": "OFF"
+    },
+    "journals":{
+        
     },
     "submissions": {
         "manuscriptGuidelines": {
