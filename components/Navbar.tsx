@@ -4,10 +4,31 @@ import { useParams } from "next/navigation";
 import LocaleSwitcher from "@/components/LocaleSwitcher";
 import Image from "next/image";
 import { useTranslations } from 'next-intl';
+import { useState, useRef, useEffect } from 'react';
 export default function Navbar() {
     const t = useTranslations('nav');
     const { locale } = (useParams() as { locale?: string }) || {};
 
+
+    //Navbar Reponsive
+    const [openMenu, setOpenMenu] = useState<string | null>(null);
+    const menuRef = useRef<HTMLUListElement>(null);
+
+    const toggleMenu = (name: string) => {
+        setOpenMenu((prev) => (prev === name ? null : name));
+    };
+
+    const closeMenu = () => setOpenMenu(null);
+
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+                closeMenu();
+            }
+        };
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
     return (
         <div className="navbar bg-base-100 shadow-sm sticky top-0 z-50 w-full">
             <div className="navbar-start">
@@ -28,11 +49,11 @@ export default function Navbar() {
                             </ul>
                         </li>
                         <li>
-                                {t('books')}
-                                <ul className="p-2">
-                                    <li><Link href={`/${locale}/books/english`}>{t('english')}</Link></li>
-                                    <li><Link href={`/${locale}/books/tamil`}>{t('tamil')}</Link></li>
-                                </ul>
+                            {t('books')}
+                            <ul className="p-2">
+                                <li><Link href={`/${locale}/books/english`}>{t('english')}</Link></li>
+                                <li><Link href={`/${locale}/books/tamil`}>{t('tamil')}</Link></li>
+                            </ul>
                         </li>
                         <li>
                             <>{t('journals')}</>
@@ -48,38 +69,79 @@ export default function Navbar() {
                 <a href={`/${locale}`}><Image src="/Logo.png" alt="Logo" width={250} height={150} /></a>
             </div>
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1">
-                    <li><Link href={`/${locale}`}>{t('home')}</Link></li>
-                    <li><Link href={`/${locale}/about`}>{t('about')}</Link></li>
-                    <li>
-                        <details>
-                            <summary>{t('submissions')}</summary>
-                            <ul className="p-2">
-                                <li><Link href={`/${locale}/submissions/manuscriptGuidelines`}>{t('manuscriptGuidelines')}</Link></li>
-                                <li><Link href={`/${locale}/submissions/policies`}>{t('policies')}</Link></li>
+                <ul className="menu menu-horizontal px-1" ref={menuRef}>
+                    <li className="normal-case" ><Link className="btn btn-ghost normal-case" href={`/${locale}`}>{t("home")}</Link></li>
+                    <li className="normal-case" ><Link className="btn btn-ghost normal-case" href={`/${locale}/about`}>{t("about")}</Link></li>
+
+                    {/* Submissions */}
+                    <li className="dropdown" onClick={() => toggleMenu("submissions")}>
+                        <label
+                            tabIndex={0}
+                            className="btn btn-ghost normal-case"
+                        >
+                            {t("submissions")}
+                        </label>
+                        {openMenu === "submissions" && (
+                            <ul
+                                tabIndex={0}
+                                className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 mt-3"
+                            >
+                                <li onClick={closeMenu}>
+                                    <Link href={`/${locale}/submissions/manuscriptGuidelines`}>
+                                        {t("manuscriptGuidelines")}
+                                    </Link>
+                                </li>
+                                <li onClick={closeMenu}>
+                                    <Link href={`/${locale}/submissions/policies`}>
+                                        {t("policies")}
+                                    </Link>
+                                </li>
                             </ul>
-                        </details>
+                        )}
                     </li>
-                    <li>
-                        <details>
-                            <summary>{t('books')}</summary>
-                            <ul className="p-2">
-                                <li><Link href={`/${locale}/books/english`}>{t('english')}</Link></li>
-                                <li><Link href={`/${locale}/books/tamil`}>{t('tamil')}</Link></li>
+
+                    {/* Books */}
+                    <li className="dropdown" onClick={() => toggleMenu("books")}>
+                        <label tabIndex={0} className="btn btn-ghost normal-case">
+                            {t("books")}
+                        </label>
+                        {openMenu === "books" && (
+                            <ul
+                                tabIndex={0}
+                                className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-25 mt-3"
+                            >
+                                <li onClick={closeMenu}>
+                                    <Link href={`/${locale}/books/english`}>{t("english")}</Link>
+                                </li>
+                                <li onClick={closeMenu}>
+                                    <Link href={`/${locale}/books/tamil`}>{t("tamil")}</Link>
+                                </li>
                             </ul>
-                        </details>
+                        )}
                     </li>
-                    <li>
-                        <details>
-                            <summary>{t('journals')}</summary>
-                            <ul className="p-2">
-                                <li><Link href={`/${locale}/journals/english`}>{t('english')}</Link></li>
-                                <li><Link href={`/${locale}/journals/tamil`}>{t('tamil')}</Link></li>
+
+                    {/* Journals */}
+                    <li className="dropdown" onClick={() => toggleMenu("journals")}>
+                        <label tabIndex={0} className="btn btn-ghost normal-case">
+                            {t("journals")}
+                        </label>
+                        {openMenu === "journals" && (
+                            <ul
+                                tabIndex={0}
+                                className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-25 mt-3"
+                            >
+                                <li onClick={closeMenu}>
+                                    <Link href={`/${locale}/journals/english`}>{t("english")}</Link>
+                                </li>
+                                <li onClick={closeMenu}>
+                                    <Link href={`/${locale}/journals/tamil`}>{t("tamil")}</Link>
+                                </li>
                             </ul>
-                        </details>
+                        )}
                     </li>
-                    <li><Link href={`/${locale}/authors`}>{t('authors')}</Link></li>
-                    <li><Link href={`/${locale}/contact`}>{t('contact')}</Link></li>
+
+                    <li><Link className="btn btn-ghost normal-case" href={`/${locale}/authors`}>{t("authors")}</Link></li>
+                    <li><Link className="btn btn-ghost normal-case" href={`/${locale}/contact`}>{t("contact")}</Link></li>
                 </ul>
             </div>
             <div className="navbar-end">
